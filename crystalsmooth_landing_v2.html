@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CrystalSmooth™ — Depilación Sin Dolor</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --rose: #E8A0A0;
+    --rose-light: #F5C6C6;
+    --rose-deep: #C97474;
+    --blush: #FDF0F0;
+    --lavender: #EDE4F5;
+    --lavender-deep: #C3A8E0;
+    --nude: #F7E8E0;
+    --nude-dark: #D4A5A5;
+    --white: #FFFAF9;
+    --dark: #2C1A1A;
+    --text: #4A3030;
+    --text-light: #8B6666;
+    --gold: #C9A84C;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  /* ANNOUNCEMENT BAR */
+  .announcement {
+    background: linear-gradient(90deg, var(--rose-deep), var(--lavender-deep), var(--rose-deep));
+    background-size: 200% 100%;
+    animation: gradientShift 4s ease infinite;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 40px;
+    background: var(--white);
+    border-bottom: 1px solid #F0E0E0;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark);
+    letter-spacing: 0.08em;
+  }
+
+  .logo span { color: var(--rose-deep); }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, #FDF0F0 0%, #EDE4F5 50%, #FDF0F0 100%);
+    padding: 60px 40px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(232,160,160,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(195,168,224,0.2) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: white;
+    color: var(--rose-deep);
+    border: 1px solid var(--rose-light);
+    border-radius: 99px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    margin-bottom: 20px;
+    animation: fadeInDown 0.6s ease;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--dark);
+    margin-bottom: 16px;
+    animation: fadeInUp 0.7s ease;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--rose-deep);
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--text-light);
+    margin-bottom: 32px;
+    font-weight: 300;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeInUp 0.8s ease;
+  }
+
+  .hero-img-wrap {
+    position: relative;
+    max-width: 420px;
+    margin: 0 auto 40px;
+    animation: fadeInUp 0.9s ease;
+  }
+
+  .hero-img-wrap img {
+    width: 100%;
+    border-radius: 24px;
+    box-shadow: 0 30px 80px rgba(201,116,116,0.2);
+  }
+
+  .floating-badge {
+    position: absolute;
+    background: white;
+    border-radius: 16px;
+    padding: 10px 14px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    font-size: 12px;
+    font-weight: 500;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .floating-badge.left {
+    left: -20px;
+    top: 30%;
+    color: var(--rose-deep);
+  }
+
+  .floating-badge.right {
+    right: -20px;
+    top: 60%;
+    color: var(--lavender-deep);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  /* STARS */
+  .stars {
+    color: #F5A623;
+    font-size: 18px;
+    margin-bottom: 4px;
+  }
+
+  .rating-text {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 28px;
+  }
+
+  /* CTA BUTTON */
+  .btn-primary {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--rose-deep), var(--lavender-deep));
+    color: white;
+    padding: 18px 48px;
+    border-radius: 99px;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 12px 40px rgba(201,116,116,0.35);
+    transition: all 0.3s ease;
+    animation: pulse 2.5s ease infinite;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 50px rgba(201,116,116,0.45);
+  }
+
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 12px 40px rgba(201,116,116,0.35); }
+    50% { box-shadow: 0 12px 60px rgba(201,116,116,0.55); }
+  }
+
+  .price-tag {
+    display: block;
+    margin-top: 14px;
+    font-size: 14px;
+    color: var(--text-light);
+  }
+
+  .price-tag strong {
+    font-size: 20px;
+    color: var(--dark);
+    font-family: 'Playfair Display', serif;
+  }
+
+  /* TRUST BADGES */
+  .trust-strip {
+    background: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #F0E0E0;
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-light);
+    font-weight: 400;
+  }
+
+  .trust-item .icon {
+    font-size: 18px;
+  }
+
+  /* SECTION */
+  section {
+    padding: 70px 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--rose-deep);
+    font-weight: 500;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--rose-deep);
+  }
+
+  .section-sub {
+    font-size: 16px;
+    color: var(--text-light);
+    font-weight: 300;
+    max-width: 520px;
+  }
+
+  /* PHOTOS GRID */
+  .photos-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .photo-card {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .photo-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .photo-card:hover img {
+    transform: scale(1.03);
+  }
+
+  .photo-card.tall {
+    grid-row: span 2;
+  }
+
+  /* BENEFITS */
+  .benefits-wrap {
+    background: linear-gradient(135deg, #FDF0F0, #EDE4F5);
+    border-radius: 32px;
+    padding: 60px 50px;
+    margin-top: 40px;
+  }
+
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 40px;
+  }
+
+  .benefit-card {
+    background: white;
+    border-radius: 20px;
+    padding: 28px 24px;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(201,116,116,0.08);
+    transition: transform 0.3s ease;
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-6px);
+  }
+
+  .benefit-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+
+  .benefit-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 8px;
+  }
+
+  .benefit-desc {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  /* HOW TO USE */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background: white;
+    border-radius: 20px;
+    padding: 24px 28px;
+    border: 1px solid #F0E0E0;
+    transition: all 0.3s ease;
+  }
+
+  .step:hover {
+    border-color: var(--rose-light);
+    box-shadow: 0 8px 30px rgba(201,116,116,0.1);
+  }
+
+  .step-num {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--rose-deep), var(--lavender-deep));
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .step-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 6px;
+  }
+
+  .step-content p {
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.6;
+  }
+
+  /* COMPARISON */
+  .compare-wrap {
+    background: white;
+    border-radius: 32px;
+    overflow: hidden;
+    border: 1px solid #F0E0E0;
+    margin-top: 40px;
+  }
+
+  .compare-img {
+    width: 100%;
+    display: block;
+  }
+
+  /* REVIEWS */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  .review-card {
+    background: white;
+    border: 1px solid #F0E0E0;
+    border-radius: 20px;
+    padding: 24px;
+    position: relative;
+  }
+
+  .review-card::before {
+    content: '"';
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    color: var(--rose-light);
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    line-height: 1;
+  }
+
+  .review-text {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 16px;
+    padding-top: 28px;
+  }
+
+  .review-author {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--dark);
+  }
+
+  .review-city {
+    font-size: 12px;
+    color: var(--text-light);
+  }
+
+  /* FAQ */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 40px;
+  }
+
+  .faq-item {
+    background: white;
+    border: 1px solid #F0E0E0;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .faq-q {
+    padding: 20px 24px;
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--dark);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s;
+  }
+
+  .faq-q:hover { background: var(--blush); }
+
+  .faq-a {
+    padding: 0 24px 20px;
+    font-size: 14px;
+    color: var(--text-light);
+    line-height: 1.7;
+    display: none;
+  }
+
+  .faq-item.open .faq-a { display: block; }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+  .faq-arrow {
+    transition: transform 0.3s;
+    color: var(--rose-deep);
+    font-size: 18px;
+  }
+
+  /* CTA FINAL */
+  .cta-section {
+    background: linear-gradient(135deg, var(--rose-deep) 0%, var(--lavender-deep) 100%);
+    border-radius: 32px;
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin: 0 40px 80px;
+  }
+
+  .cta-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 40%, rgba(255,255,255,0.1) 0%, transparent 50%);
+  }
+
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    color: white;
+    margin-bottom: 16px;
+    position: relative;
+  }
+
+  .cta-section p {
+    color: rgba(255,255,255,0.85);
+    font-size: 16px;
+    margin-bottom: 32px;
+    position: relative;
+  }
+
+  .btn-white {
+    display: inline-block;
+    background: white;
+    color: var(--rose-deep);
+    padding: 18px 48px;
+    border-radius: 99px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    cursor: pointer;
+    border: none;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .btn-white:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 30px 40px;
+    font-size: 13px;
+  }
+
+  footer .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    color: white;
+    margin-bottom: 10px;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .benefits-grid { grid-template-columns: 1fr; }
+    .reviews-grid { grid-template-columns: 1fr; }
+    .photos-grid { grid-template-columns: 1fr; }
+    .photo-card.tall { grid-row: span 1; }
+    .trust-strip { gap: 16px; }
+    .benefits-wrap { padding: 32px 24px; }
+    .cta-section { margin: 0 16px 60px; padding: 40px 24px; }
+    section { padding: 50px 20px; }
+    .floating-badge { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="announcement">
+  ✨ +5.000 mujeres ya lo tienen &nbsp;•&nbsp; 📦 Envío a todo el país &nbsp;•&nbsp; 💛 Garantía 30 días
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Crystal<span>Smooth</span>™</div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">✦ Nuevo en Argentina</div>
+  <h1>Piel suave,<br><em>sin dolor</em> ni cuchillas</h1>
+  <p class="hero-sub">El depilador de cristal que exfolia mientras elimina el vello. Rápido, indoloro y reutilizable.</p>
+
+  <div class="hero-img-wrap">
+    <img src="https://clicksur.myshopify.com/cdn/shop/files/WhatsApp_Image_2026-05-12_at_18.24.24.jpg" alt="CrystalSmooth depilador de cristal">
+    <div class="floating-badge left">🌸 Sin irritación</div>
+    <div class="floating-badge right">♻️ Reutilizable</div>
+  </div>
+
+  <div class="stars">★★★★★</div>
+  <p class="rating-text">4.8/5 — Más de 5.000 clientas satisfechas</p>
+
+  <button class="btn-primary" onclick="document.getElementById('comprar').scrollIntoView({behavior:'smooth'})">
+    QUIERO MI CRYSTALSMOOTH™
+  </button>
+  <span class="price-tag">Solo <strong>$19.350 ARS</strong> · Envío a todo el país</span>
+</div>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip">
+  <div class="trust-item"><span class="icon">🔒</span> Compra segura</div>
+  <div class="trust-item"><span class="icon">📦</span> Envío en 6-7 días hábiles</div>
+  <div class="trust-item"><span class="icon">💛</span> Garantía 30 días</div>
+  <div class="trust-item"><span class="icon">💳</span> Todos los medios de pago</div>
+</div>
+
+<!-- FOTOS / PRODUCTO -->
+<section>
+  <div class="section-label">El producto</div>
+  <h2 class="section-title">Diseñado para tu<br><em>rutina de belleza</em></h2>
+  <p class="section-sub">Compacto, elegante y fácil de usar. Viene con estuche protector incluido.</p>
+
+  <div class="photos-grid">
+    <div class="photo-card tall">
+      <img src="https://clicksur.myshopify.com/cdn/shop/files/WhatsAppImage2026-05-12at18.24.24_1.jpg" alt="CrystalSmooth en mano">
+    </div>
+    <div class="photo-card">
+      <img src="https://clicksur.myshopify.com/cdn/shop/files/WhatsAppImage2026-05-12at18.24.25_1.jpg" alt="CrystalSmooth colores">
+    </div>
+    <div class="photo-card">
+      <img src="https://clicksur.myshopify.com/cdn/shop/files/WhatsApp_Image_2026-05-12_at_18.24.25.jpg" alt="CrystalSmooth detalle">
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section style="padding-top: 0;">
+  <div class="benefits-wrap">
+    <div class="section-label">Por qué te va a encantar</div>
+    <h2 class="section-title">Todo lo que<br><em>necesitabas</em></h2>
+
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">🔮</div>
+        <div class="benefit-title">Sin dolor</div>
+        <p class="benefit-desc">Tecnología nano crystal que elimina el vello suavemente por fricción. Adiós a los cortes e irritaciones.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">✨</div>
+        <div class="benefit-title">Exfolia tu piel</div>
+        <p class="benefit-desc">Mientras depila, remueve células muertas dejando tu piel suave y radiante al instante.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">♻️</div>
+        <div class="benefit-title">Reutilizable</div>
+        <p class="benefit-desc">Un solo CrystalSmooth™ reemplaza meses de cuchillas y cremas depilatorias. Ahorrás y cuidás el planeta.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">💆‍♀️</div>
+        <div class="benefit-title">Piel sensible</div>
+        <p class="benefit-desc">Sin químicos agresivos. Apto para todo tipo de piel, incluyendo las más delicadas.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">⚡</div>
+        <div class="benefit-title">En minutos</div>
+        <p class="benefit-desc">Piernas, brazos, axilas y bikini listos en minutos. Sin turnos, sin esperas, sin complicaciones.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">✈️</div>
+        <div class="benefit-title">Llevalo a todos lados</div>
+        <p class="benefit-desc">Compacto y liviano. Con estuche protector incluido, es tu compañera de viaje ideal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO USARLO -->
+<section style="background: var(--blush); max-width: 100%; padding: 70px 40px;">
+  <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
+    <div>
+      <div class="section-label">Cómo usarlo</div>
+      <h2 class="section-title">3 pasos para una<br><em>piel perfecta</em></h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>🚿 Limpiá y secá</h3>
+            <p>Limpiá y secá bien la zona que querés depilar. La piel seca mejora el resultado.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>🔮 Deslizá en círculos</h3>
+            <p>Pasá el CrystalSmooth™ con movimientos circulares suaves durante 3 a 5 minutos.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>✨ Hidratá y listo</h3>
+            <p>Aplicá tu crema favorita. Tu piel quedará increíblemente suave al instante.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <img src="https://clicksur.myshopify.com/cdn/shop/files/WhatsAppImage2026-05-12at18.24.24_1.jpg" alt="Cómo usar CrystalSmooth" style="width:100%; border-radius: 24px; box-shadow: 0 20px 60px rgba(201,116,116,0.2);">
+    </div>
+  </div>
+</section>
+
+<!-- COMPARACIÓN -->
+<section>
+  <div class="section-label">La diferencia</div>
+  <h2 class="section-title">CrystalSmooth™<br><em>vs. el resto</em></h2>
+  <div class="compare-wrap">
+    <img class="compare-img" src="https://clicksur.myshopify.com/cdn/shop/files/WhatsApp_Image_2026-05-12_at_18.24.25.jpg" alt="Comparación CrystalSmooth">
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section style="background: linear-gradient(135deg, #FDF0F0, #EDE4F5); max-width: 100%; padding: 70px 40px;">
+  <div style="max-width: 1100px; margin: 0 auto;">
+    <div class="section-label">Lo que dicen ellas</div>
+    <h2 class="section-title">+5.000 mujeres ya lo<br><em>comprobaron</em></h2>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Me sorprendió muchísimo. Pensé que era otro producto viral más, pero deja la piel súper suave y no me irritó nada.</p>
+        <div class="review-author">Camila R.</div>
+        <div class="review-city">Córdoba</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">Lo usé en piernas y axilas y en minutos terminé todo. Mucho más práctico que la afeitadora y sin irritación.</p>
+        <div class="review-author">Valentina M.</div>
+        <div class="review-city">Rosario, Santa Fe</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">La mejor compra que hice este año. La piel queda suave y además exfolia un montón. Lo recomiendo a todas mis amigas.</p>
+        <div class="review-author">Sofía G.</div>
+        <div class="review-city">Buenos Aires</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section>
+  <div class="section-label">Preguntas frecuentes</div>
+  <h2 class="section-title">Todo lo que<br><em>querés saber</em></h2>
+  <div class="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">¿Duele usarlo? <span class="faq-arrow">▾</span></div>
+      <div class="faq-a">No. La mayoría de las usuarias lo describen como una sensación de exfoliación suave, nada más. No arranca ni corta.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">¿Funciona en todo tipo de piel? <span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Sí, es apto para piel sensible, normal y mixta. Te recomendamos probarlo primero en una zona pequeña.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">¿En qué zonas del cuerpo se puede usar? <span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Piernas, brazos, axilas, línea del bikini, espalda y rostro.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">¿Cuánto dura el resultado? <span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Entre 2 y 4 semanas dependiendo de cada persona y zona del cuerpo.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">¿Es reutilizable? <span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Sí, completamente. Solo lavalo con agua después de cada uso y guardalo en su estuche protector.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">¿Cuánto tarda en llegar? <span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Entre 6 y 7 días hábiles a todo el país. El costo de envío se calcula según tu provincia al momento del pago.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<div id="comprar" class="cta-section">
+  <h2>Tu piel merece lo mejor ✨</h2>
+  <p>Únete a más de 5.000 mujeres que ya transformaron su rutina de depilación</p>
+  <button class="btn-white" onclick="window.location.href='https://clicksur.myshopify.com/products/crystalsmooth%E2%84%A2-depilacion-sin-dolor'">
+    COMPRAR AHORA — $19.350 ARS
+  </button>
+  <div style="margin-top: 16px; color: rgba(255,255,255,0.7); font-size: 13px;">
+    📦 Envío a todo el país &nbsp;·&nbsp; 💛 Garantía 30 días &nbsp;·&nbsp; 🔒 Pago seguro
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">CrystalSmooth™</div>
+  <p>© 2026 ClickSur · Todos los derechos reservados</p>
+</footer>
+
+<script>
+  function toggleFaq(el) {
+    const item = el.parentElement;
+    item.classList.toggle('open');
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.benefit-card, .review-card, .step, .faq-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
